@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="flex justify-content-between align-items-center mb-5">
+        <span class="text-900 text-xl font-semibold">Nueva opción</span>
+    </div>
+
+	<div class="col-12 p-0">
+			<div class="p-fluid p-formgrid grid">
+				<div class="field col-12 md:col-6">
+					<label htmlFor="firstname2">Nombre de menu visible</label>
+					<input pInputText id="firstname2" type="text" [(ngModel)]="opcion.name"/>
+				</div>
+				<div class="field col-12 md:col-6">
+					<label htmlFor="lastname2">Codigo</label>
+					<input pInputText id="lastname2" type="text" [(ngModel)]="opcion.code"/>
+				</div>
+                <div class="field col-12 md:col-6">
+					<label htmlFor="lastname2">Ruta</label>
+					<input pInputText id="lastname2" type="text" [(ngModel)]="opcion.route"/>
+				</div>
+				<div class="field col-12">
+					<label htmlFor="address">Descripcion</label>
+					<!-- <input pInputTextarea id="address" rows="4" /> -->
+                    <textarea inputId="textarea" rows="3" cols="30" pInputTextarea [(ngModel)]="opcion.description"></textarea>
+				</div>
+                <div class="field col-12">
+                    <button pButton pRipple type="button" label="Guardar" class="p-button-outlined" (click)="save()"></button>
+                </div>
+			</div>
+	</div>
+</div>
+
+

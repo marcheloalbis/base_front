@@ -1,0 +1,14 @@
+<table id="customers">
+    <tr >
+        <th>Code</th>
+        <th>Name</th>
+        <th>Asignar</th>
+    </tr>
+    <tr *ngFor="let item of listRol; let i = index">
+        <td>{{ item.code }}</td>
+        <td>{{ item.name }}</td>
+        <td>
+            <input type="checkbox" [(ngModel)]="listBoolean[i]" (change)="changeSelect($event, i)">
+        </td>
+    </tr>
+</table>

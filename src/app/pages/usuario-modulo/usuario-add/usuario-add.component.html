@@ -1,0 +1,40 @@
+
+<div class="card">
+    <div class="flex justify-content-between align-items-center mb-5">
+        <span class="text-900 text-xl font-semibold"> {{esNuevo? 'Nuevo ': 'Editar '}}  Usuario</span>
+    </div>
+
+	<div class="col-12 p-0">
+		<div class="p-fluid p-formgrid grid">
+			<div class="field col-12 md:col-4">
+				<label htmlFor="firstname2">Nombre</label>
+				<input pInputText id="firstname2" type="text" [(ngModel)]="usuario.name"/>
+			</div>
+			<div class="field col-12 md:col-4">
+				<label htmlFor="lastname2">Paterno</label>
+				<input pInputText id="lastname2" type="text" [(ngModel)]="usuario.paterno"/>
+			</div>
+            <div class="field col-12 md:col-4">
+				<label htmlFor="lastname2">Materno</label>
+				<input pInputText id="lastname2" type="text" [(ngModel)]="usuario.materno"/>
+			</div>
+
+            <div class="field col-12 md:col-6">
+				<label htmlFor="lastname2">Email</label>
+				<input pInputText id="lastname2" type="text" [(ngModel)]="usuario.email"/>
+			</div>
+            <div class="field col-12 md:col-6">
+				<label htmlFor="lastname2">Password</label>
+				<input pInputText id="lastname2" type="text" [(ngModel)]="usuario.password"/>
+			</div>
+            <div class="field col-12">
+                <admin-roles (changeList)="updateList($event)" [listRolUser]="userRoles"></admin-roles>
+            </div>
+			<div class="field col-12">
+				<button pButton pRipple type="button" label="Guardar" class="p-button-outlined" (click)="save()"></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+

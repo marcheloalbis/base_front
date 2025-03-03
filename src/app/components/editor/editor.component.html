@@ -1,0 +1,120 @@
+<!--
+Utilizamos [ngClass] en vez de :class,
+y [(ngModel)] en vez de v-model, etc.
+-->
+<div class="lt-container" [ngClass]="isDark ? 'dark-mode' : 'light-mode'">
+    <!-- ENCABEZADO SUPERIOR -->
+    <div class="lt-topbar">
+      <div class="lt-dropdown">
+        <span>Texto temporal ▼</span>
+      </div>
+      <!-- Botón para cambiar el tema -->
+      <button class="theme-switcher" (click)="toggleTheme()">
+        {{ isDark ? 'Claro' : 'Oscuro' }}
+      </button>
+    </div>
+  
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="lt-main">
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="lt-left">
+        <h1 class="lt-title">Bienvenido al editor</h1>
+        <!-- Equivale a v-model="text" y @input="checkText" -->
+        <textarea
+          class="lt-textarea"
+          [(ngModel)]="text"
+          (input)="checkText()"
+          placeholder="Escribe o pega tu texto aquí..."
+        ></textarea>
+      </div>
+  
+      <!-- COLUMNA DERECHA -->
+      <div class="lt-right">
+        <div class="lt-eval-top">
+          <div class="lt-progress-row">
+            <div class="lt-progress-label">Evaluación del texto</div>
+            <div class="lt-progress-bar">
+              <div class="lt-progress-fill" [style.width.%]="progressPercent"></div>
+            </div>
+            <div class="lt-progress-value">{{ progressPercent }}</div>
+          </div>
+  
+          <div class="lt-toggle-row">
+            <span>Objetivo</span>
+            <button class="lt-obj-btn">Fijar un objetivo ▼</button>
+          </div>
+  
+          <div class="lt-buttons-row">
+            <button class="lt-correct-btn">
+              Corregir {{ result?.matches?.length || 0 }}
+            </button>
+            <button class="lt-paraphrase-btn">
+              {{ wordCount }} palabras
+            </button>
+          </div>
+        </div>
+  
+        <!-- LISTADO DE ERRORES -->
+        <div class="lt-errors-list">
+          <!-- Equivale a v-for="(match, index) in result.matches" -->
+          <div
+            *ngFor="let match of result?.matches; let i = index"
+            class="lt-error-item"
+          >
+            <div class="lt-error-header" (click)="toggleCollapse(i)">
+              <span
+                class="lt-dot"
+                [ngClass]="dotColor(match.rule.issueType)"
+              ></span>
+  
+              <div class="lt-error-type">
+                {{
+                  match.context.text.slice(
+                    match.context.offset,
+                    match.context.offset + match.context.length
+                  )
+                }}
+                -
+                {{ getErrorLabel(match.rule.issueType) }}
+              </div>
+  
+              <div class="lt-error-summary">
+                {{ match.rule.description || 'Error detectado' }}
+              </div>
+  
+              <div class="lt-arrow-indicator">
+                <span *ngif="collapsedIndex === i">▲</span>
+                <span *ngif="collapsedIndex !== i">▼</span>
+              </div>
+            </div>
+  
+            <!-- Equivale a v-if="collapsedIndex === i" -->
+            <div *ngIf="collapsedIndex === i" class="lt-error-details">
+              <p class="lt-error-msg">
+                {{ match.message }}
+              </p>
+  
+              <div class="lt-suggestions">
+                <strong>Sugerencias:</strong>
+                <span *ngIf="match.replacements.length">
+                  {{ getReplacementsText(match) }}
+                </span>
+                <span *ngIf="!match.replacements.length">Sin sugerencias</span>
+              </div>
+  
+              <div class="suggestions-container" *ngIf="match.replacements.length">
+                <button
+                  class="suggestion-button"
+                  *ngFor="let rep of match.replacements"
+                  (click)="applySuggestion(match, rep.value)"
+                >
+                  {{ rep.value }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

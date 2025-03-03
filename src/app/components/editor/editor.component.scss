@@ -1,0 +1,391 @@
+/* Estilos base (por defecto en modo oscuro) */
+.lt-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+  }
+  
+  .lt-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Separa a izquierda y derecha */
+    height: 40px;
+    padding: 0 20px;
+    border-bottom: 1px solid #333;
+    background-color: #1a1a1a;
+  }
+  
+  /* MODO OSCURO */
+  .dark-mode {
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+  .dark-mode .lt-topbar {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+  }
+  .dark-mode .lt-dropdown {
+    color: #aaa;
+  }
+  
+  /* MODO CLARO */
+  .light-mode {
+    background-color: #f9f9f9;
+    color: #000;
+  }
+  .light-mode .lt-topbar {
+    background-color: #eaeaea;
+    border-bottom: 1px solid #ccc;
+  }
+  .light-mode .lt-dropdown {
+    color: #333;
+  }
+  
+  /* Botón para cambiar tema */
+  .theme-switcher {
+    margin-left: auto;
+    padding: 4px 8px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .light-mode .theme-switcher {
+    background-color: #ddd;
+    color: #444;
+    border: 1px solid #999;
+  }
+  
+  /* CONTENEDOR PRINCIPAL: 2 columnas */
+  .lt-main {
+    flex: 1;
+    display: flex;
+  }
+  
+  /* COLUMNA IZQUIERDA (texto) */
+  .lt-left {
+    min-width: 500px;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* TÍTULO */
+  .lt-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  /* TEXTAREA */
+  .lt-textarea {
+    width: 100%;
+    height: calc(100vh - 130px);
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+  }
+  .dark-mode .lt-textarea {
+    background-color: #2b2b2b;
+    color: #fff;
+  }
+  .light-mode .lt-textarea {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+  }
+  
+  /* COLUMNA DERECHA (Panel correcciones) */
+  .lt-right {
+    min-width: 500px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-left: 1px solid #333;
+    padding: 20px;
+  }
+  
+  /* Modo claro override en el panel derecho */
+  .light-mode .lt-right {
+    border-left: 1px solid #ccc;
+  }
+  
+  /* Barra superior (eval-top) */
+  .lt-eval-top {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+  }
+  .light-mode .lt-eval-top {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Fila de progreso */
+  .lt-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .lt-progress-label {
+    font-weight: bold;
+  }
+  .lt-progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #444;
+    border-radius: 4px;
+    position: relative;
+  }
+  .dark-mode .lt-progress-bar {
+    background-color: #444;
+  }
+  .light-mode .lt-progress-bar {
+    background-color: #ccc;
+  }
+  
+  .lt-progress-fill {
+    background-color: #0f62fe;
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  .lt-progress-value {
+    min-width: 30px;
+    text-align: right;
+  }
+  
+  /* Botón objetivo */
+  .lt-obj-btn {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #aaa;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .light-mode .lt-obj-btn {
+    background-color: #ddd;
+    border: 1px solid #999;
+    color: #333;
+  }
+  
+  /* Botones corregir / parafrasear */
+  .lt-buttons-row {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+  }
+  .lt-correct-btn,
+  .lt-paraphrase-btn {
+    flex: 1;
+    font-weight: bold;
+    border: none;
+    padding: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .lt-correct-btn {
+    background-color: #0f62fe;
+    color: #fff;
+  }
+  .lt-correct-btn:hover {
+    background-color: #0053c9;
+  }
+  .lt-paraphrase-btn {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+  }
+  .lt-paraphrase-btn:hover {
+    background-color: #444;
+  }
+  
+  /* Modo claro override */
+  .light-mode .lt-paraphrase-btn {
+    background-color: #ddd;
+    color: #333;
+    border: 1px solid #999;
+  }
+  .light-mode .lt-paraphrase-btn:hover {
+    background-color: #ccc;
+  }
+  
+  /* LISTADO DE ERRORES */
+  .lt-errors-list {
+    margin-top: 10px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .lt-error-item {
+    border: 1px solid #444;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #2b2b2b;
+  }
+  .light-mode .lt-error-item {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+  }
+  
+  /* Encabezado del error */
+  .lt-error-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-bottom: 1px solid #444;
+    position: relative;
+  }
+  .lt-error-header:hover {
+    background-color: #3a3a3a;
+  }
+  .light-mode .lt-error-header {
+    border-bottom: 1px solid #ccc;
+  }
+  .light-mode .lt-error-header:hover {
+    background-color: #e2e2e2;
+  }
+  
+  /* Punto de color (tipo de error) */
+  .lt-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  .dot-pink {
+    background-color: #ff66cc;
+  }
+  .dot-yellow {
+    background-color: #ffbc00;
+  }
+  .dot-purple {
+    background-color: #9d4edd;
+  }
+  .dot-default {
+    background-color: #ccc;
+  }
+  
+  /* Título ("Ortografía", etc.) */
+  .lt-error-type {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  /* Descripción breve */
+  .lt-error-summary {
+    color: #ccc;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .light-mode .lt-error-summary {
+    color: #666;
+  }
+  
+  /* Flecha */
+  .lt-arrow-indicator {
+    margin-left: 5px;
+  }
+  
+  /* Detalles del error */
+  .lt-error-details {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #ddd;
+  }
+  .light-mode .lt-error-details {
+    color: #333;
+  }
+  
+  .lt-error-msg {
+    margin: 0;
+  }
+  
+  /* Sugerencias */
+  .lt-suggestions {
+    font-size: 0.9rem;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #1e1e1e;
+    color: #ccc;
+  }
+  .light-mode .lt-suggestions {
+    background-color: #f4f4f4;
+    color: #555;
+  }
+  .suggestions-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .suggestion-button {
+    background-color: #0f62fe;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .suggestion-button:hover {
+    background-color: #0053c9;
+  }
+  .light-mode .suggestion-button {
+    background-color: #79a4f3;
+    color: #333;
+  }
+  .light-mode .suggestion-button:hover {
+    background-color: #0053c9;
+  }
+  /* Resaltar palabras incorrectas */
+  .highlight-error {
+    background-color: rgba(255, 0, 0, 0.3);
+    border-bottom: 2px dotted red;
+    cursor: pointer;
+  }
+  
+  .lt-tooltip {
+    position: absolute;
+    background-color: #222;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    max-width: 250px;
+    z-index: 1000;
+  }
+  
+  .lt-tooltip strong {
+    font-size: 1rem;
+    color: #ffcc00;
+  }
+  
+  .lt-tooltip p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+  }
+  
+  .lt-tooltip span {
+    display: inline-block;
+    background: #0f62fe;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-right: 3px;
+    font-size: 0.8rem;
+  }
+  
+  
