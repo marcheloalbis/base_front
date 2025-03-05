@@ -388,4 +388,44 @@
     font-size: 0.8rem;
   }
   
+  .file-upload-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px; /* Aumenta el espacio entre el botón y el textarea */
+  }
+  
+  .file-upload {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Oculta el input original */
+  .file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Aplica los estilos del botón .lt-correct-btn al label */
+  .file-upload label {
+    flex: 1;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #0f62fe;
+    color: #fff;
+    text-align: center;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .file-upload label:hover {
+    background-color: #0053c9;
+  }
   

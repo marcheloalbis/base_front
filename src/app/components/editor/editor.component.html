@@ -1,25 +1,24 @@
-<!--
-Utilizamos [ngClass] en vez de :class,
-y [(ngModel)] en vez de v-model, etc.
--->
 <div class="lt-container" [ngClass]="isDark ? 'dark-mode' : 'light-mode'">
-    <!-- ENCABEZADO SUPERIOR -->
     <div class="lt-topbar">
       <div class="lt-dropdown">
         <span>Texto temporal ▼</span>
       </div>
-      <!-- Botón para cambiar el tema -->
       <button class="theme-switcher" (click)="toggleTheme()">
         {{ isDark ? 'Claro' : 'Oscuro' }}
       </button>
     </div>
   
-    <!-- CONTENIDO PRINCIPAL -->
     <div class="lt-main">
-      <!-- COLUMNA IZQUIERDA -->
       <div class="lt-left">
         <h1 class="lt-title">Bienvenido al editor</h1>
-        <!-- Equivale a v-model="text" y @input="checkText" -->
+        
+        <div class="file-upload-container">
+          <div class="file-upload">
+            <input type="file" id="fileInput" (change)="onFileSelected($event)" accept=".docx" />
+            <label for="fileInput" class="lt-upload-btn">📂 Subir Archivo</label>
+          </div>
+        </div>
+    
         <textarea
           class="lt-textarea"
           [(ngModel)]="text"
@@ -28,7 +27,6 @@ y [(ngModel)] en vez de v-model, etc.
         ></textarea>
       </div>
   
-      <!-- COLUMNA DERECHA -->
       <div class="lt-right">
         <div class="lt-eval-top">
           <div class="lt-progress-row">
@@ -54,9 +52,7 @@ y [(ngModel)] en vez de v-model, etc.
           </div>
         </div>
   
-        <!-- LISTADO DE ERRORES -->
         <div class="lt-errors-list">
-          <!-- Equivale a v-for="(match, index) in result.matches" -->
           <div
             *ngFor="let match of result?.matches; let i = index"
             class="lt-error-item"
@@ -83,12 +79,11 @@ y [(ngModel)] en vez de v-model, etc.
               </div>
   
               <div class="lt-arrow-indicator">
-                <span *ngif="collapsedIndex === i">▲</span>
-                <span *ngif="collapsedIndex !== i">▼</span>
+                <span *ngIf="collapsedIndex === i">▲</span>
+                <span *ngIf="collapsedIndex !== i">▼</span>
               </div>
             </div>
   
-            <!-- Equivale a v-if="collapsedIndex === i" -->
             <div *ngIf="collapsedIndex === i" class="lt-error-details">
               <p class="lt-error-msg">
                 {{ match.message }}

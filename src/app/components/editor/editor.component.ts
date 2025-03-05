@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { renderAsync } from 'docx-preview';
 
 @Component({
   selector: 'app-editor',
@@ -10,7 +11,7 @@ export class EditorComponent {
   text = '';
   result: any = { matches: [] };
   collapsedIndex: number | null = null;
-  isDark = true;
+  isDark = false;
   progressPercent = 81;
 
   constructor(private http: HttpClient) {}
@@ -56,16 +57,20 @@ export class EditorComponent {
 
   // Reemplazar la palabra errónea con la sugerencia elegida
   applySuggestion(match: any, suggestion: string): void {
-    const offset = match.context.offset;
-    const length = match.context.length;
-    const before = this.text.slice(0, offset);
-    const after = this.text.slice(offset + length);
-
-    this.text = before + suggestion + after;
-
+    const incorrectWord = match.context.text.slice(
+      match.context.offset,
+      match.context.offset + match.context.length
+    );
+  
+    // Expresión regular para encontrar la palabra exacta y reemplazar solo la primera coincidencia
+    const regex = new RegExp(`\\b${incorrectWord}\\b`, 'g');
+  
+    this.text = this.text.replace(regex, suggestion);
+  
     // Volver a chequear el texto tras la corrección
     this.checkText();
   }
+  
 
   // Mostrar / ocultar detalles
   toggleCollapse(index: number): void {
@@ -100,5 +105,55 @@ export class EditorComponent {
       default:
         return 'dot-default';
     }
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+  
+    const reader = new FileReader();
+    reader.onload = async (e: any) => {
+      try {
+        const arrayBuffer = e.target.result;
+        const extractedText = await this.extractTextFromDocx(arrayBuffer);
+        this.text = extractedText; // Asignamos el texto al editor
+  
+        this.checkText(); // Llamar automáticamente al servicio de corrección
+      } catch (error) {
+        console.error('Error al leer el archivo de Word:', error);
+      }
+    };
+  
+    reader.readAsArrayBuffer(file);
+  }
+  
+
+  async extractTextFromDocx(arrayBuffer: ArrayBuffer): Promise<string> {
+    try {
+      // Crear un div temporal para renderizar el contenido del .docx
+      const tempContainer = document.createElement('div');
+
+      // Renderizar el documento en HTML dentro del div
+      await renderAsync(arrayBuffer, tempContainer);
+
+      // Remover estilos y extraer solo el texto visible
+      const cleanText = this.getPlainText(tempContainer);
+
+      return cleanText;
+    } catch (error) {
+      console.error('Error al extraer texto del DOCX:', error);
+      return 'Error al extraer texto.';
+    }
+  }
+
+  /**
+   * Extrae solo el texto visible y elimina etiquetas innecesarias.
+   */
+  getPlainText(container: HTMLElement): string {
+    // Removemos todos los elementos `<style>` y `<script>` dentro del documento renderizado
+    container.querySelectorAll('style, script').forEach((node) => node.remove());
+
+    // Extraer solo el texto visible del documento sin etiquetas HTML
+    return container.innerText.trim();
   }
 }
