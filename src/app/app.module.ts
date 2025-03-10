@@ -21,7 +21,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AppLayoutModule,
     AppRoutingModule,
     PagesModule,
-    UsuariosPageModule,
+    UsuariosPageModule
   ],
   providers: [
     CookieService,

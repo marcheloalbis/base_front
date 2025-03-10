@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './pages/demo-modulo/home-page/home-page.component';
+//import { HomePageComponent } from './pages/demo-modulo/home-page/home-page.component';
 import { AppLayoutComponent } from './pages/layout/app.layout.component';
 import { OpcionAddPage } from './pages/usuario-modulo/opcion-add/opcion-add.component';
 import { OpcionesListPage } from './pages/usuario-modulo/opciones/opcion-list.component';
@@ -10,6 +10,8 @@ import { UsuarioAddPage } from './pages/usuario-modulo/usuario-add/usuario-add.c
 import { UsuarioPage } from './pages/usuario-modulo/usuario/usuario.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EditorComponent } from './components/editor/editor.component';
+import { DemoPage } from './pages/demo/demo.component';
+import { HomePageComponent } from './pages/demo-modulo/home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,10 @@ const routes: Routes = [
         {
           path: 'editor',
           component: EditorComponent 
+        },
+        {
+          path: 'demo',
+          component: DemoPage 
         }, 
         {
           path: 'dashboard',

@@ -1,0 +1,62 @@
+.document-content {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  min-height: 250px;
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul, ol {
+    margin-left: 20px;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  blockquote {
+    border-left: 4px solid #888;
+    padding-left: 10px;
+    color: #555;
+    font-style: italic;
+  }
+
+  text-align: justify;
+}
+
+.highlight-spelling {
+  background-color: lightgreen;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-grammar {
+  background-color: yellow;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-style {
+  background-color: red;
+  color: white;
+  padding: 2px;
+  border-radius: 3px;
+}
