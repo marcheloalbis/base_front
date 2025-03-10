@@ -25,26 +25,13 @@
                 <div class="text-900 font-semibold text-lg mb-3">Radicador Beta 0.3</div>
                 <p class="line-height-3 mt-0 mb-3">Este título secundario es bueno</p>
 
-                <!-- Editor con resaltado -->
                 <p-editor [style]="{'height':'250px'}" [(ngModel)]="textoHTML"></p-editor>
 
                 <div class="flex column-gap-3 justify-content-end mt-3">
-                    <button pButton pRipple type="button" class="p-button-primary" icon="pi pi-check" 
-                        (click)="checkText()" label="Revisar texto"></button>
+                    <button pButton pRipple type="button" class="p-button-primary" icon="pi pi-check" (click)="checkText()" label="Revisar texto"></button>
 
-                    <input type="file" (change)="onFileSelect($event)" accept=".txt,.doc,.docx" 
-                        style="display:none" #fileInput />
-                    <button pButton pRipple type="button" class="p-button-outlined" icon="pi pi-upload" 
-                        (click)="fileInput.click()" label="Subir archivo"></button>
-
-                    <button pButton pRipple type="button" class="p-button-success" icon="pi pi-download" 
-                        (click)="downloadAsDocx()" label="Descargar DOCX"></button>
-                </div>
-
-                <!-- Vista previa del texto corregido -->
-                <div class="mt-4 p-3 border-round surface-100">
-                    <h5>Vista previa del texto con correcciones:</h5>
-                    <div [innerHTML]="formattedText"></div>
+                    <input type="file" (change)="onFileSelect($event)" accept=".txt,.doc,.docx" style="display:none" #fileInput />
+                    <button pButton pRipple type="button" class="p-button-outlined" icon="pi pi-upload" (click)="fileInput.click()" label="Subir archivo"></button>
                 </div>
             </div>
         </div>

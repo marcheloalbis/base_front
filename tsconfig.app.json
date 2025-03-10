@@ -6,6 +6,8 @@
     "types": ["node"],
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "target": "es2015",
+    "module": "esnext"
   },
   "files": [
     "src/main.ts"
